@@ -1,0 +1,38 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'miniMaxSum' function below.
+#
+# The function accepts INTEGER_ARRAY arr as parameter.
+#
+
+def miniMaxSum(arr):
+    # Write your code here
+    
+    #para isso preciso 
+    #Minimo: A soma dos primeiros quatro numeros no array ordenado
+    #Maximo: A soma dos ultimos quatro numeros no array ordenado
+    #arr[:4] seleciona os primeiros 4 números.
+    #arr[1:] seleciona os últimos 4 números.
+    #sum() calcula a soma desses subconjuntos.
+    #ordenar o array
+    arr.sort()
+    
+    #calcular o menor valor somando os 4 menores numeros
+    min_sum = sum(arr[:4])
+    max_sum = sum(arr[1:])
+    
+    print(min_sum, max_sum)
+    
+
+if __name__ == '__main__':
+
+    arr = list(map(int, input().rstrip().split()))
+
+    miniMaxSum(arr)
