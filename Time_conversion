@@ -1,0 +1,44 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'timeConversion' function below.
+#
+# The function is expected to return a STRING.
+# The function accepts STRING s as parameter.
+#
+
+def timeConversion(s):
+    # Write your code here
+    #extrair o periodo AM/PM, hora, minutos e segundos
+    periodo = s[-2:]
+    hora = int(s[:2])
+    minutos_segundos = s [2:-2]
+    
+    if periodo == "AM":
+        #para AM, 12 e convertido para 00
+        if  hora == 12:
+            hora = 0
+    else: #para PM, 12 permance 12 outros adicionam 12
+        if hora != 12:
+            hora += 12
+        
+    #formatar a hora para sempre ter dois digitos
+    militar_time = f"{hora:2}{minutos_segundos}"
+    return militar_time
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = timeConversion(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
