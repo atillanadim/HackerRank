@@ -1,0 +1,43 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'timeConversion' function below.
+#
+# The function is expected to return a STRING.
+# The function accepts STRING s as parameter.
+#
+
+def timeConversion(s):
+    # Write your code here
+    #extrair o periodo AM/PM, hora, minutos e segundos
+    meridian = s[-2:] # Extract AM or PM value from end of string.
+    time = s[:-2] # Assign new time with AM/PM removed.
+    hour = s[:2] # Extract hour.
+    
+    if meridian == 'PM' and hour != '12':
+        new_hour = str(int(hour) + 12)
+        
+        time = time.replace(hour, new_hour)
+    elif meridian == 'AM' and hour == '12':
+        new_hour = '00'
+        
+        time = time.replace(hour, new_hour)
+    
+    return time
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = timeConversion(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
